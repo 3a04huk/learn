@@ -1,0 +1,129 @@
+#include <iostream>
+#include <stdio.h>
+#include <ctype.h>
+#include <Windows.h>
+using namespace std;
+char S[80];
+void inputStr()
+{
+  cout << "Введите строку из русских букв\n";
+  fseek(stdin, 0, SEEK_END);
+  gets_s(S, 79);
+}
+void outputStr()
+{
+  cout << "Значение строки S:\n" << S << endl;
+}
+void encode()
+{
+  cout << "Запись зашифрованной строки S. \n";
+  int Q = 26;
+  int offSet = 13;
+  unsigned char currentByte;
+  for (int i = 0; i < strlen(S); i++)
+  {
+    if (S[i] >= 97 && S[i] <= 122)
+    {
+      currentByte = S[i] + offSet;
+      if (currentByte > 122)
+      {
+        currentByte = currentByte - 122 + 96;
+      }
+      S[i] = currentByte;
+    }
+    else if (S[i] >= 65 && S[i] <= 90)
+    {
+      currentByte = S[i] + offSet;
+      if (currentByte > 90)
+      {
+        currentByte = currentByte - 90 + 64;
+      }
+      S[i] = currentByte;
+    }
+  }
+}
+void decode()
+{
+  cout << "Запись расшифрованной строки S.\n";
+  int Q = 26;
+  int offSet = 13;
+  unsigned char currentByte;
+  for (int i = 0; i < strlen(S); i++)
+  {
+    if (S[i] >= 97 && S[i] <= 122)
+    {
+      currentByte = S[i] + offSet;
+      if (currentByte > 122)
+      {
+        currentByte = currentByte - 122 + 96;
+      }
+      S[i] = currentByte;
+    }
+    else if (S[i] >= 65 && S[i] <= 90)
+    {
+      currentByte = S[i] + offSet;
+      if (currentByte > 90)
+      {
+        currentByte = currentByte - 90 + 64;
+      }
+      S[i] = currentByte;
+    }
+  }
+}
+void save()
+{
+  cout << "Введите имя файла!\n";
+
+  cout << "п5\n";
+}
+void readStr()
+{
+  cout << "п6";
+}
+
+void main()
+{
+  SetConsoleCP(1251);
+  SetConsoleOutputCP(65001);
+  int a;
+  printf_s("(%d) %s\n", 1, "ввод строки с клавиатуры.");
+  printf_s("(%d) %s\n", 2, "вывод строки на экран.");
+  printf_s("(%d) %s\n", 3, "зашифровать строку.");
+  printf_s("(%d) %s\n", 4, "расшифровать строку.");
+  printf_s("(%d) %s\n", 5, "записать строку в текстовый файл.");
+  printf_s("(%d) %s\n", 6, "считать строку из текстового файла.");
+  printf_s("(%d) %s\n", 0, "завершить работу.");
+  while (true)
+  {
+    cout << "Выберите действие\n";
+    cin >> a;
+    switch (a)
+    {
+    case 1:
+      inputStr();
+      break;
+    case 2:
+      outputStr();
+      break;
+    case 3:
+      encode();
+      break;
+    case 4:
+      decode();
+      break;
+    case 5:
+      save();
+      break;
+    case 6:
+      readStr();
+      break;
+    case 0:
+      cout << "Сеанс окончен!\n";
+      return;
+    default:
+      cout << "Команда неизвестна\n";
+      break;
+    }
+  }
+
+}
