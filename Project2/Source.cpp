@@ -1,7 +1,4 @@
 ﻿#include <iostream>
-#include <stdio.h>
-#include <ctype.h>
-#include <Windows.h>
 using namespace std;
 
 void main()
